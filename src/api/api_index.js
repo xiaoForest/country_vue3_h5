@@ -15,7 +15,7 @@ export const imgUrl = "https://gdxczx.yuezhengwl.com/"
  * 导航
  * @param {Object} params
  */
- export function getChannel(params) {
+export function getChannel(params) {
   let url = `${baseUrl}api/Channel/getChannel`;
   return http.get(url, {
     ...params
@@ -45,11 +45,28 @@ export function getBanner() {
 }
 
 
-/**
- * getQrcode
- * @param {Object} params
- */
 export function getQrcode() {
   let url = `${baseUrl}api/banner/getQrcode`;
   return http.get(url, {});
+}
+
+
+export function getWebConfig() {
+  let url = `${baseUrl}api/index/getWebConfig`;
+  return http.get(url, {});
+}
+
+
+
+export function getWeblink() {
+  let url = `${baseUrl}api/weblink/getWeblink`;
+  return http.get(url, {});
+}
+
+ 
+export function getArticleDetail(id, channel) {
+  let url = `${baseUrl}api/article/detail?id=${id}&channel=${channel}`;
+  return http.get(url, {
+
+  });
 }

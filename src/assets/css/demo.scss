@@ -491,3 +491,52 @@ body {
       }
     }
   }
+
+
+  .detailWrap {
+    padding: 50px;
+    background: #fff;
+    .title {
+      font-size: 44px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #292929;
+      line-height: 62px;
+      margin-bottom: 20px;
+      text-align: justify;
+      &.tc {
+        text-align: center;
+      }
+    }
+    .lien {
+      display: block;
+      width: 110px;
+      height: 12px;
+      background: #c10b0b;
+      margin-bottom: 30px;
+    }
+    .info {
+      height: 32px;
+      font-size: 24px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #98999a;
+      line-height: 32px;
+    }
+    .detailsBox {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      font-size: 32px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #434343;
+      line-height: 56px;
+      text-align: justify;
+    }
+  }

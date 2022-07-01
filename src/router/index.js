@@ -8,6 +8,7 @@ import Index from '@/views/index'
 import Page from '@/views/page'
 import TopicList from '@/views/topicList'
 import Details from '@/views/details'
+import ArticleDetails from '@/views/articleDetails'
 
 const Router = createRouter({
   history: createWebHistory(),
@@ -30,6 +31,11 @@ const Router = createRouter({
       path: '/topicList',
       name: 'topicList',
       component: TopicList
+    },
+    {
+      path: '/articleDetails',
+      name: 'articleDetails',
+      component: ArticleDetails
     },
   ]
 })

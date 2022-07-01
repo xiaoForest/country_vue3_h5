@@ -1,13 +1,9 @@
 
 <template>
-  <NavBar ref="sonRef" title="广东乡村振兴" :showR="false" />
+  <NavBar ref="sonRef" :title="title" :showR="false" />
   <section class="detailWrap">
-    <div class="title" v-html="detail.title"></div>
-    <span class="lien"></span>
-    <div class="info">
-      来源：{{ detail.source }} |
-      {{ dayjs(detail.createtime * 1000).format("YYYY-MM-DD HH:mm:ss") }}
-    </div>
+    <!-- <div class="title tc" v-html="detail.title"></div> -->
+
     <div class="detailsBox" v-html="detail.content"></div>
   </section>
   <Footer />
@@ -18,7 +14,7 @@ import { useRouter, useRoute } from "vue-router";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
-import { getNewsDetail } from "@/api/api_news";
+import { getArticleDetail } from "@/api/api_index";
 import dayjs from "dayjs";
 const router = useRouter();
 const route = useRoute();
@@ -29,16 +25,17 @@ const goToPage = () => {
   Toast("开发中");
 };
 const detail = ref([]);
+const title = ref(route.query.title);
 const NewsDetail = async () => {
   Toast.loading({
     message: "加载中...",
     forbidClick: true,
     duration: 0,
   });
-  await getNewsDetail(route.query.id)
+  await getArticleDetail(route.query.id, route.query.channel)
     .then((res) => {
       console.log(res);
-      detail.value = res.data.data.detail;
+      detail.value = res.data.data;
     })
     .catch((err) => {
       Toast("显示信息出错");
@@ -51,5 +48,4 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-
 </style>
