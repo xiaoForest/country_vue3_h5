@@ -1,6 +1,7 @@
 import {
   createRouter,
-  createWebHashHistory
+  createWebHashHistory,
+  createWebHistory
 } from 'vue-router'
 
 import Index from '@/views/index'
@@ -8,7 +9,7 @@ import Page from '@/views/page'
 import Details from '@/views/details'
 
 const Router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [{
       path: '/',
       name: 'index',
