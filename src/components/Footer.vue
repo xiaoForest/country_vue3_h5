@@ -78,13 +78,13 @@ const goToPage = (i, name) => {
 
 <style lang="scss">
 .footerInfo {
-  padding: 20px 0;
+  padding: 20px 0 30px;
   font-size: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   p {
-    margin-bottom: 15px;
+    margin-top: 15px;
     height: 33px;
     font-size: 24px;
     font-family: PingFangSC-Regular, PingFang SC;
@@ -93,7 +93,7 @@ const goToPage = (i, name) => {
     line-height: 33px;
   }
   a {
-    margin-bottom: 15px;
+    margin-top: 15px;
     height: 33px;
     font-size: 24px;
     font-family: PingFangSC-Regular, PingFang SC;
