@@ -37,7 +37,7 @@
 </template>
 <script setup>
 import { reactive, ref, onMounted, watchEffect } from "vue";
-import { getNewsBlock, getNewsIndex } from "@/api/api_news.js";
+import { getSpecialNewsList } from "@/api/api_specialnews.js";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useRouter, useRoute } from "vue-router";
@@ -54,21 +54,20 @@ const props = defineProps({
     default: [],
   },
 });
-const title = ref(route.query.title);
+const title = ref("");
 const params = ref({
   keyword: "",
   page: -1,
   pagesize: 20,
-  channel: route.query.channel,
-  subcategory: route.query.subcategory,
+  special: route.query.id,
 });
 const appointmentQuery = async () => {
-  await getNewsIndex(params.value)
+  await getSpecialNewsList(params.value)
     .then((res) => {
-      let items = res.data.data.list.data;
+      let items = res.data.data.data;
       list.value = [...list.value, ...items];
       loading.value = false;
-
+      title.value = res.data.data.banner.title;
       if (items.length == 0) {
         finished.value = true;
       } else {
@@ -130,5 +129,5 @@ const onChange = () => {
 </script>
 
 <style lang="scss">
-
+ 
 </style>

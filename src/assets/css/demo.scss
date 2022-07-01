@@ -451,3 +451,43 @@ body {
         }
     }
 }
+.newsUlWrap {
+    padding: 0 20px;
+    background: #fff;
+    .items {
+      width: 670px;
+      height: 184px;
+      margin: 0 auto;
+      background: #ffffff;
+      box-shadow: inset 0px -1px 0px 0px #eff1f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .title {
+        display: block;
+        text-align: justify;
+        height: 92px;
+        font-size: 32px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #222222;
+        line-height: 46px;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .time {
+        margin-top: 10px;
+        height: 32px;
+        font-size: 26px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #98999a;
+        line-height: 32px;
+      }
+    }
+  }

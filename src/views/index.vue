@@ -33,7 +33,11 @@
       <HomeList :List="blockList" />
       <div class="swiperTwo">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item v-for="(item, index) in bannerList" :key="index">
+          <van-swipe-item
+            v-for="(item, index) in bannerList"
+            :key="index"
+            @click="goToBannerList(item)"
+          >
             <img :src="imgUrl + item.image" alt="" />
           </van-swipe-item>
         </van-swipe>
@@ -108,11 +112,22 @@ const goToPage = (i) => {
 };
 
 const goToPageChange = (i) => {
-  console.log(i);
+  let id = i.link_url.split("=");
   router.push({
     path: "/details",
     query: {
-      id: i.id,
+      id: id[1],
+      title: i.name,
+    },
+  });
+};
+const goToBannerList = (i) => {
+  let id = i.link_url.split("=");
+  console.log(id[1]);
+  router.push({
+    path: "/topicList",
+    query: {
+      id: id[1],
       title: i.name,
     },
   });

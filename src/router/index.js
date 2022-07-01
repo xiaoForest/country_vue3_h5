@@ -6,6 +6,7 @@ import {
 
 import Index from '@/views/index'
 import Page from '@/views/page'
+import TopicList from '@/views/topicList'
 import Details from '@/views/details'
 
 const Router = createRouter({
@@ -24,6 +25,11 @@ const Router = createRouter({
       path: '/details',
       name: 'details',
       component: Details
+    },
+    {
+      path: '/topicList',
+      name: 'topicList',
+      component: TopicList
     },
   ]
 })

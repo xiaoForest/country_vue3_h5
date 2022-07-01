@@ -115,11 +115,17 @@ defineExpose({
     }
   }
   h2 {
+    text-align: center;
+    width: 550px;
     font-size: 40px;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: #222222;
     line-height: 1;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>
