@@ -60,7 +60,7 @@ const props = defineProps({
 const title = ref(route.query.title);
 const params = ref({
   keyword: route.query.keyword,
-  page: -1,
+  page: 0,
   pagesize: 20,
   channel: route.query.channel,
   subcategory: route.query.subcategory,
@@ -145,7 +145,7 @@ const onRefresh = () => {
   finished.value = false;
   // 重新加载数据
   // 将 loading 设置为 true，表示处于加载状态
-  params.value["page"] = -1;
+  params.value["page"] = 0;
   loading.value = true;
   onLoad();
 };
