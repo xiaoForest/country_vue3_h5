@@ -34,10 +34,9 @@
       </ul>
     </van-list>
   </van-pull-refresh>
- 
 </template>
 <script setup>
-import { reactive, ref, onMounted, watchEffect } from "vue";
+import { reactive, ref, onMounted, watchEffect, onActivated } from "vue";
 import { getNewsBlock, getNewsIndex } from "@/api/api_news.js";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -124,7 +123,7 @@ const onRefresh = () => {
   loading.value = true;
   onLoad();
 };
-
+// onActivated(() => {onLoad()}); 打开后，从其它更多进入后，不会刷新
 const onChange = () => {
   Toast("开发中");
 };

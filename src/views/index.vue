@@ -64,7 +64,7 @@
   <Footer />
 </template>
 <script setup>
-import { reactive, ref, onMounted, watchEffect } from "vue";
+import { reactive, ref, onMounted, watchEffect, onActivated } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -146,7 +146,8 @@ const goToBannerList = (i) => {
     },
   });
 };
-onMounted(() => {
+onMounted(() => {});
+onActivated(() => {
   indexList();
   indexBanner();
   navChannel();
@@ -205,19 +206,24 @@ const onSearchPage = () => {
     overflow: hidden;
   }
   .swiperTwo {
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    padding: 0 20px 20px;
     height: 172px;
-    margin: 20px auto;
+    margin: 0 auto 20px;
     background: #fff;
   }
   .swiperThree {
-    border-radius: 10px;
-    padding: 0;
-    margin: 20px auto;
+    border-radius: 10px 10px 0 0;
+    padding: 20px 20px 0;
+    background: #fff;
+    margin: 20px auto 0;
     overflow: hidden;
-    img {
-      object-fit: contain !important;
+    font-size: 0;
+    .my-swipe {
+      background: none !important;
+      img {
+        object-fit: contain !important;
+      }
     }
   }
   .my-swipe {
