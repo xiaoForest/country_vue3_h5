@@ -34,6 +34,7 @@
       </ul>
     </van-list>
   </van-pull-refresh>
+ 
 </template>
 <script setup>
 import { reactive, ref, onMounted, watchEffect } from "vue";
@@ -129,5 +130,4 @@ const onChange = () => {
 </script>
 
 <style lang="scss">
- 
 </style>
