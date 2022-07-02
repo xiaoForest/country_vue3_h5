@@ -2,7 +2,7 @@
 <template>
   <!-- <NavBar ref="sonRef" :title="title" :showR="false" /> -->
   <section class="detailWrap">
-    <!-- <div class="title tc" v-html="detail.title"></div> -->
+    <div class="title tc" v-html="detail.title"></div>
 
     <div class="detailsBox" v-html="detail.content"></div>
   </section>
