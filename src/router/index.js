@@ -11,7 +11,7 @@ import Details from '@/views/details'
 import ArticleDetails from '@/views/articleDetails'
 import SearchPage from '@/views/searchPage'
 const Router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [{
       path: '/',
       name: 'index',

@@ -32,10 +32,23 @@
 
     <div class="wrap">
       <HomeList :List="blockList" />
+
+      <div class="swiperThree">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe-item
+            v-for="(item, index) in bannerList.slice(0, 1)"
+            :key="index"
+            @click="goToBannerList(item)"
+          >
+            <img :src="imgUrl + item.image" alt="" />
+          </van-swipe-item>
+        </van-swipe>
+      </div>
+
       <div class="swiperTwo">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item
-            v-for="(item, index) in bannerList"
+            v-for="(item, index) in bannerList.slice(1)"
             :key="index"
             @click="goToBannerList(item)"
           >
@@ -197,6 +210,15 @@ const onSearchPage = () => {
     height: 172px;
     margin: 20px auto;
     background: #fff;
+  }
+  .swiperThree {
+    border-radius: 10px;
+    padding: 0;
+    margin: 20px auto;
+    overflow: hidden;
+    img {
+      object-fit: contain !important;
+    }
   }
   .my-swipe {
     height: 100%;
