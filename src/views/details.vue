@@ -1,6 +1,6 @@
 
 <template>
-  <NavBar ref="sonRef" title="广东乡村振兴" :showR="false" />
+  <!-- <NavBar ref="sonRef" title="广东乡村振兴" :showR="false" /> -->
   <section class="detailWrap">
     <div class="title" v-html="detail.title"></div>
     <span class="lien"></span>

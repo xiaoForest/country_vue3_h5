@@ -1,6 +1,6 @@
 
 <template>
-  <NavBar :title="title" ref="sonRef" :showR="false" goBack="/" />
+  <!-- <NavBar :title="title" ref="sonRef" :showR="false" goBack="/" /> -->
 
   <!-- <div class="searchBox mt20">
     <van-icon name="search" />

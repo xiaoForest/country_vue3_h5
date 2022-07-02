@@ -1,6 +1,6 @@
 
 <template>
-  <NavBar title="首页" :showL="false" ref="sonRef" />
+  <!-- <NavBar title="首页" :showL="false" ref="sonRef" /> -->
 
   <section class="homeWrap">
     <img class="topBanner" :src="getSrc('topBanner.png')" alt="" />
@@ -13,6 +13,7 @@
       >
         {{ item.name }}
       </div>
+      <van-icon name="search" />
     </div>
     <div class="swiperOne">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -170,6 +171,10 @@ const navList = ref([]);
       font-weight: 400;
       color: #ffffff;
       line-height: 1;
+    }
+    .van-icon {
+      font-size: 30px;
+      color: #fff;
     }
   }
 

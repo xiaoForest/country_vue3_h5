@@ -1,6 +1,6 @@
 
 <template>
-  <NavBar ref="sonRef" :title="title" :showR="false" />
+  <!-- <NavBar ref="sonRef" :title="title" :showR="false" /> -->
   <section class="detailWrap">
     <!-- <div class="title tc" v-html="detail.title"></div> -->
 
