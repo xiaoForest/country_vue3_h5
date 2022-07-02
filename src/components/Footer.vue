@@ -245,18 +245,13 @@ const onWebLink = (i) => {
   height: calc(100% - 96px);
   overflow: auto;
   .popupLinkUl {
-    border-bottom: 1px #f1f1f1 solid;
-
-    margin-bottom: 80px;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
     li {
       width: 50%;
       box-sizing: border-box;
-      & + li + li {
-        border-top: 1px #f1f1f1 solid;
-      }
+      border-bottom: 1px #f1f1f1 solid;
       &:nth-child(2n + 2) {
         padding-left: 20px;
       }
@@ -267,13 +262,13 @@ const onWebLink = (i) => {
 
       a {
         width: 100%;
-        height: 100px;
+        height: 105px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         span {
           font-size: 28px;
-          line-height:1.5;
+          line-height: 1.5;
           color: #333;
         }
         .van-icon {
