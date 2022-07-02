@@ -36,3 +36,12 @@ export function getNewsDetail(id) {
 
   });
 }
+
+
+
+export function getSearchIndex(params) {
+  let url = `${baseUrl}api/Search/index`;
+  return http.get(url, {
+    ...params
+  });
+}

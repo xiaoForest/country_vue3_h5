@@ -9,7 +9,7 @@ import Page from '@/views/page'
 import TopicList from '@/views/topicList'
 import Details from '@/views/details'
 import ArticleDetails from '@/views/articleDetails'
-
+import SearchPage from '@/views/searchPage'
 const Router = createRouter({
   history: createWebHistory(),
   routes: [{
@@ -36,6 +36,11 @@ const Router = createRouter({
       path: '/articleDetails',
       name: 'articleDetails',
       component: ArticleDetails
+    },
+    {
+      path: '/searchPage',
+      name: 'searchPage',
+      component: SearchPage
     },
   ]
 })

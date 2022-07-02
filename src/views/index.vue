@@ -13,7 +13,7 @@
       >
         {{ item.name }}
       </div>
-      <van-icon name="search" />
+      <van-icon name="search" @click="onSearchPage" />
     </div>
     <div class="swiperOne">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -138,7 +138,7 @@ onMounted(() => {
   indexBanner();
   navChannel();
 });
-
+const navList = ref([]);
 const navChannel = async () => {
   await getChannel()
     .then((res) => {
@@ -149,7 +149,12 @@ const navChannel = async () => {
       console.log(err);
     });
 };
-const navList = ref([]);
+const onSearchPage = () => {
+  router.push({
+    path: "/searchPage",
+    query: {},
+  });
+};
 </script>
 
 <style lang="scss">
