@@ -26,7 +26,7 @@ const Router = createRouter({
     name: 'page',
     component: () => import('@/views/page.vue'),
     meta: {
-      keepAlive: true,
+      keepAlive: false,
       showFooter: true,
     }
   },

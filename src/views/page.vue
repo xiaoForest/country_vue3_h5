@@ -36,11 +36,18 @@
   </van-pull-refresh>
 </template>
 <script setup>
-import { reactive, ref, onMounted, watchEffect, onActivated } from "vue";
+import {
+  reactive,
+  ref,
+  onMounted,
+  watchEffect,
+  onActivated,
+  onDeactivated,
+} from "vue";
 import { getNewsBlock, getNewsIndex } from "@/api/api_news.js";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
 const router = useRouter();
 const route = useRoute();
 import { Toast } from "vant";
@@ -123,7 +130,29 @@ const onRefresh = () => {
   loading.value = true;
   onLoad();
 };
-// onActivated(() => {onLoad()}); 打开后，从其它更多进入后，不会刷新
+onActivated(() => {
+  onLoad();
+});
+const changeRouterKeepAlive = (name, keepAlive) => {
+  router.options.routes.map((item) => {
+    if (item.name === name) {
+      item.meta.keepAlive = keepAlive;
+    }
+  });
+};
+onBeforeRouteLeave((to, from) => {
+  // to为即将跳转的路由，from为上一个页面路由
+  // if (to.name !== "details") {
+  //   //  去 c 页面，缓存
+  //   changeRouterKeepAlive(from.name, false);
+  // } else {
+  //   changeRouterKeepAlive(from.name, true);
+  // }
+  // to.meta.keepAlive = false;
+});
+
+onDeactivated(() => {});
+
 const onChange = () => {
   Toast("开发中");
 };

@@ -65,7 +65,7 @@
 </template>
 <script setup>
 import { reactive, ref, onMounted, watchEffect, onActivated } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
@@ -148,10 +148,13 @@ const goToBannerList = (i) => {
 };
 onMounted(() => {});
 onActivated(() => {
+  console.log("缓缓");
   indexList();
   indexBanner();
   navChannel();
 });
+
+onBeforeRouteLeave((to, from) => {});
 const navList = ref([]);
 const navChannel = async () => {
   await getChannel()
