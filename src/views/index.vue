@@ -202,7 +202,7 @@ const onSearchPage = () => {
 
   .swiperOne {
     border-radius: 10px;
-    height: 370px;
+    height: 480px;
     padding: 20px 20px 0;
     margin: auto 0;
     background: linear-gradient(180deg, #fff 0, rgba(255, 255, 255, 0.15) 100%);
