@@ -1,20 +1,9 @@
 
 <template>
-  <!-- <NavBar title="首页" :showL="false" ref="sonRef" /> -->
-
   <section class="homeWrap">
     <img class="topBanner" :src="getSrc('topBanner.png')" alt="" />
-    <div class="navList">
-      <div
-        class="item"
-        v-for="(item, index) in navList"
-        :key="index"
-        @click="goToPage(item)"
-      >
-        {{ item.name }}
-      </div>
-      <van-icon name="search" @click="onSearchPage" />
-    </div>
+    <NavBar :showCrumbs="false" ref="sonRef" />
+
     <div class="swiperOne">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item
@@ -114,16 +103,6 @@ const indexBanner = async () => {
       console.log(err);
     });
 };
-const goToPage = (i) => {
-  console.log(i);
-  router.push({
-    path: "/page",
-    query: {
-      channel: i.id,
-      title: i.name,
-    },
-  });
-};
 
 const goToPageChange = (i) => {
   let id = i.link_url.split("=");
@@ -151,134 +130,11 @@ onActivated(() => {
   console.log("缓缓");
   indexList();
   indexBanner();
-  navChannel();
 });
 
-onBeforeRouteLeave((to, from) => {});
-const navList = ref([]);
-const navChannel = async () => {
-  await getChannel()
-    .then((res) => {
-      navList.value = res.data.data.top;
-    })
-    .catch((err) => {
-      Toast("显示信息出错");
-      console.log(err);
-    });
-};
-const onSearchPage = () => {
-  router.push({
-    path: "/searchPage",
-    query: {},
-  });
-};
+onBeforeRouteLeave((to, from) => {
+  console.log(111)
+});
 </script>
 
-<style lang="scss">
-.homeWrap {
-  font-size: 0;
-  .topBanner {
-    width: 100%;
-  }
-  .navList {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 72px;
-    background: #c10b0b;
-    .item {
-      font-size: 28px;
-      font-family: PingFangSC-Regular, PingFang SC;
-      font-weight: 400;
-      color: #ffffff;
-      line-height: 1;
-    }
-    .van-icon {
-      font-size: 30px;
-      color: #fff;
-    }
-  }
-
-  .swiperOne {
-    border-radius: 10px;
-    height: 480px;
-    padding: 20px 20px 0;
-    margin: auto 0;
-    background: linear-gradient(180deg, #fff 0, rgba(255, 255, 255, 0.15) 100%);
-    overflow: hidden;
-  }
-  .swiperTwo {
-    border-radius: 0 0 10px 10px;
-    padding: 0 20px 20px;
-    height: 172px;
-    margin: 0 auto 20px;
-    background: #fff;
-  }
-  .swiperThree {
-    border-radius: 10px 10px 0 0;
-    padding: 20px 20px 0;
-    background: #fff;
-    margin: 20px auto 0;
-    overflow: hidden;
-    font-size: 0;
-    .my-swipe {
-      background: none !important;
-      img {
-        object-fit: contain !important;
-      }
-    }
-  }
-  .my-swipe {
-    height: 100%;
-    overflow: hidden;
-    background: #fff;
-    .van-swipe-item {
-      color: #fff;
-      font-size: 20px;
-      height: 100%;
-      width: 100%;
-      text-align: center;
-      border-radius: 10px;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 90px;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-        z-index: 1;
-        text-align: left;
-        span {
-          display: block;
-          width: 680px;
-          margin: 0 auto;
-          height: 46px;
-          font-size: 32px;
-          font-family: PingFangSC-Regular, PingFang SC;
-          font-weight: 400;
-          color: #ffffff;
-          line-height: 46px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-      }
-    }
-    .van-swipe__indicators {
-      bottom: 20px;
-      .van-swipe__indicator {
-        margin: 0 6px;
-        width: 14px;
-        height: 14px;
-      }
-    }
-  }
-}
-</style>
+ 

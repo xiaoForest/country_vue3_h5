@@ -1,19 +1,15 @@
 
 <template>
-  <!-- <NavBar :title="title" ref="sonRef" :showR="false" goBack="/" /> -->
-
-  <!-- <div class="searchBox mt20">
-    <van-icon name="search" />
-    <input
-      type="text"
-      v-model="params.keyword"
-      placeholder="输入姓名，电话查找"
-      @input="changeInput(params.keyword)"
-    />
-    <div class="text r_case blue tdu" @click="onSearch(params.keyword)">
-      搜索
-    </div>
-  </div> -->
+  <div class="pageTitle">
+    <h2>{{ title }}</h2>
+  </div>
+  <NavBar
+    :subList="subList"
+    :name="title"
+    ref="sonRef"
+    @childClick="childClick"
+    @childClick2="childClick2"
+  />
   <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
     <van-list
       v-model:loading="loading"
@@ -62,6 +58,9 @@ const props = defineProps({
   },
 });
 const title = ref(route.query.title);
+watchEffect(() => {
+  title.value = route.query.title;
+});
 const params = ref({
   keyword: "",
   page: -1,
@@ -69,11 +68,13 @@ const params = ref({
   channel: route.query.channel,
   subcategory: route.query.subcategory,
 });
+const subList = ref([]);
 const appointmentQuery = async () => {
   await getNewsIndex(params.value)
     .then((res) => {
       let items = res.data.data.list.data;
       list.value = [...list.value, ...items];
+      subList.value = res.data.data.sidebar.subcategory_arr;
       loading.value = false;
 
       if (items.length == 0) {
@@ -87,7 +88,17 @@ const appointmentQuery = async () => {
       console.log(err);
     });
 };
-onMounted(() => {});
+
+onMounted(() => {
+  window.addEventListener(
+    "popstate",
+    function () {
+      location.reload();
+    },
+    false
+  );
+});
+
 const goToPage = (i) => {
   console.log(i);
   router.push({
@@ -97,6 +108,7 @@ const goToPage = (i) => {
       channel: route.query.channel,
       subcategory: route.query.subcategory,
       title: route.query.title,
+      index: route.query.index,
     },
   });
 };
@@ -130,8 +142,21 @@ const onRefresh = () => {
   loading.value = true;
   onLoad();
 };
+const childClick = (i) => {
+  list.value = [];
+  params.value["channel"] = i.id;
+  params.value["subcategory"] = "";
+
+  onRefresh();
+};
+const childClick2 = (i) => {
+  list.value = [];
+  params.value["channel"] = i.channel;
+  params.value["subcategory"] = i.id;
+  onRefresh();
+};
 onActivated(() => {
-  onLoad();
+  // onLoad();
 });
 const changeRouterKeepAlive = (name, keepAlive) => {
   router.options.routes.map((item) => {
@@ -140,16 +165,6 @@ const changeRouterKeepAlive = (name, keepAlive) => {
     }
   });
 };
-onBeforeRouteLeave((to, from) => {
-  // to为即将跳转的路由，from为上一个页面路由
-  // if (to.name !== "details") {
-  //   //  去 c 页面，缓存
-  //   changeRouterKeepAlive(from.name, false);
-  // } else {
-  //   changeRouterKeepAlive(from.name, true);
-  // }
-  // to.meta.keepAlive = false;
-});
 
 onDeactivated(() => {});
 

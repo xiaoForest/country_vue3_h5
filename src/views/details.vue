@@ -1,6 +1,15 @@
 
 <template>
-  <!-- <NavBar ref="sonRef" title="广东乡村振兴" :showR="false" /> -->
+  <div class="pageTitle">
+    <h2>{{ title }}</h2>
+  </div>
+  <NavBar
+    :subList="subList"
+    :name="title"
+    ref="sonRef"
+    @childClick2="childClick2"
+  />
+
   <section class="detailWrap">
     <div class="title" v-html="detail.title"></div>
     <span class="lien"></span>
@@ -25,10 +34,15 @@ const route = useRoute();
 
 import { Toast } from "vant";
 const sonRef = ref();
+const title = ref(route.query.title);
+watchEffect(() => {
+  title.value = route.query.title;
+});
 const goToPage = () => {
   Toast("开发中");
 };
 const detail = ref([]);
+const subList = ref([]);
 const NewsDetail = async () => {
   Toast.loading({
     message: "加载中...",
@@ -39,6 +53,7 @@ const NewsDetail = async () => {
     .then((res) => {
       console.log(res);
       detail.value = res.data.data.detail;
+      subList.value = res.data.data.sidebar.subcategory_arr;
     })
     .catch((err) => {
       Toast("显示信息出错");
@@ -51,5 +66,4 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-
 </style>
