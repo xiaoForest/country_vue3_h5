@@ -1,19 +1,15 @@
 
 <template>
-  <!-- <NavBar :title="title" ref="sonRef" :showR="false" goBack="/" /> -->
-
-  <!-- <div class="searchBox mt20">
-    <van-icon name="search" />
-    <input
-      type="text"
-      v-model="params.keyword"
-      placeholder="输入姓名，电话查找"
-      @input="changeInput(params.keyword)"
-    />
-    <div class="text r_case blue tdu" @click="onSearch(params.keyword)">
-      搜索
-    </div>
-  </div> -->
+  <div class="pageTitle">
+    <h2>{{ title }}</h2>
+  </div>
+  <NavBar
+    :subList="subList"
+    :name="title"
+    ref="sonRef"
+    @childClick="childClick"
+    @childClick2="childClick2"
+  />
   <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
     <van-list
       v-model:loading="loading"
@@ -34,7 +30,6 @@
       </ul>
     </van-list>
   </van-pull-refresh>
- 
 </template>
 <script setup>
 import { reactive, ref, onMounted, watchEffect } from "vue";

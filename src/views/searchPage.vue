@@ -1,7 +1,8 @@
 
 <template>
-  <!-- <NavBar :title="title" ref="sonRef" :showR="false" goBack="/" /> -->
-
+  <div class="pageTitle">
+    <h2>广东乡村振兴</h2>
+  </div>
   <div class="searchWrap">
     <div class="searchBox">
       <van-icon name="search" />

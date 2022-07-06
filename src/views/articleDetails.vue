@@ -1,6 +1,15 @@
 
 <template>
-  <!-- <NavBar ref="sonRef" :title="title" :showR="false" /> -->
+  <div class="pageTitle">
+    <h2>{{ title || sidebar.channel_name }}</h2>
+  </div>
+  <NavBar
+    :subList="subList"
+    :name="title || sidebar.channel_name"
+    ref="sonRef"
+    @childClick2="childClick2"
+  />
+
   <section class="detailWrap">
     <div class="title tc" v-html="detail.title"></div>
 

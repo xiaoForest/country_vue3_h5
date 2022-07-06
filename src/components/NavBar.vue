@@ -19,7 +19,7 @@
       <van-icon name="arrow" />
       <span>{{ name }}</span>
     </div>
-    <div class="boxes" v-if="subList.length != 0">
+    <div class="boxes" v-if="subList.length != 0 && subList != true">
       <van-icon
         name="arrow-down"
         :class="showSub == true ? 'on' : ''"
@@ -27,7 +27,6 @@
       />
     </div>
   </div>
-
   <div class="subWrap" v-show="showSub">
     <div class="item">{{ name }}</div>
     <div

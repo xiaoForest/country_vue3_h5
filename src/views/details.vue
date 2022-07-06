@@ -1,11 +1,11 @@
 
 <template>
   <div class="pageTitle">
-    <h2>{{ title }}</h2>
+    <h2>{{ title || sidebar.channel_name }}</h2>
   </div>
   <NavBar
     :subList="subList"
-    :name="title"
+    :name="title || sidebar.channel_name"
     ref="sonRef"
     @childClick2="childClick2"
   />
@@ -43,6 +43,7 @@ const goToPage = () => {
 };
 const detail = ref([]);
 const subList = ref([]);
+const sidebar = ref([]);
 const NewsDetail = async () => {
   Toast.loading({
     message: "加载中...",
@@ -54,6 +55,7 @@ const NewsDetail = async () => {
       console.log(res);
       detail.value = res.data.data.detail;
       subList.value = res.data.data.sidebar.subcategory_arr;
+      sidebar.value = res.data.data.sidebar;
     })
     .catch((err) => {
       Toast("显示信息出错");
