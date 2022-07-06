@@ -131,10 +131,12 @@ onMounted(() => {
   height: 90px;
 }
 .crumbs {
+  position: relative;
   padding: 40px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 10;
   .boxes {
     display: flex;
     align-items: center;
