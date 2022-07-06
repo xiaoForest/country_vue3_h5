@@ -1,45 +1,46 @@
 
 <template>
-  <div class="navList">
-    <div
-      class="item"
-      v-for="(item, index) in navList"
-      :key="index"
-      @click="goToPage(item)"
-    >
-      {{ item.name }}
+  <van-sticky>
+    <div class="navList">
+      <div
+        class="item"
+        v-for="(item, index) in navList"
+        :key="index"
+        @click="goToPage(item)"
+      >
+        {{ item.name }}
+      </div>
+      <van-icon name="search" @click="onSearchPage" />
     </div>
-    <van-icon name="search" @click="onSearchPage" />
-  </div>
-  <div class="crumbs" v-if="showCrumbs">
-    <div class="boxes">
-      <van-icon name="location-o" />
-      <span>您所在的位置：</span>
-      <span @click="goHome">首页</span>
-      <van-icon name="arrow" />
-      <span>{{ name }}</span>
+    <div class="crumbs" v-if="showCrumbs">
+      <div class="boxes">
+        <van-icon name="location-o" />
+        <span>您所在的位置：</span>
+        <span @click="goHome">首页</span>
+        <van-icon name="arrow" />
+        <span>{{ name }}</span>
+      </div>
+      <div class="boxes" v-if="subList.length != 0 && subList != true">
+        <van-icon
+          name="arrow-down"
+          :class="showSub == true ? 'on' : ''"
+          @click="onSub"
+        />
+      </div>
     </div>
-    <div class="boxes" v-if="subList.length != 0 && subList != true">
-      <van-icon
-        name="arrow-down"
-        :class="showSub == true ? 'on' : ''"
-        @click="onSub"
-      />
+    <div class="subWrap" v-show="showSub">
+      <div class="item">{{ name }}</div>
+      <div
+        class="item"
+        :class="{ on: active == index }"
+        v-for="(i, index) in subList"
+        :key="index"
+        @click="goToPageSub(i, index)"
+      >
+        {{ i.name }}
+      </div>
     </div>
-  </div>
-  <div class="subWrap" v-show="showSub">
-    <div class="item">{{ name }}</div>
-    <div
-      class="item"
-      :class="{ on: active == index }"
-      v-for="(i, index) in subList"
-      :key="index"
-      @click="goToPageSub(i, index)"
-    >
-      {{ i.name }}
-    </div>
-  </div>
-
+  </van-sticky>
   <!-- <div class="emptyNavbar"></div> -->
 </template>
 <script setup>
@@ -131,10 +132,12 @@ onMounted(() => {
   height: 90px;
 }
 .crumbs {
+  background: #fff;
   position: relative;
   padding: 40px 14px;
   display: flex;
   align-items: center;
+  box-shadow: 0 8px 12px #ebedf0;
   justify-content: space-between;
   z-index: 10;
   .boxes {
