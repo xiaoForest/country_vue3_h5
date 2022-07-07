@@ -46,10 +46,6 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  subList: {
-    type: Object,
-    default: true,
-  },
 });
 
 const showSub = ref(true);

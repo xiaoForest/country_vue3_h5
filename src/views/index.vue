@@ -2,12 +2,7 @@
 <template>
   <section class="homeWrap">
     <img class="topBanner" :src="getSrc('topBanner.png')" alt="" />
-    <NavBarIndex
-      :subList="subList"
-      ref="sonRef"
-      @childClick="childClick"
-      @childClick2="childClick2"
-    />
+    <NavBarIndex ref="sonRef" />
 
     <div class="swiperOne">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
