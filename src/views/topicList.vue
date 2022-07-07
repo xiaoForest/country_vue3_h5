@@ -4,7 +4,6 @@
     <h2>{{ title }}</h2>
   </div>
   <NavBar
-    :subList="subList"
     :name="title"
     ref="sonRef"
     @childClick="childClick"

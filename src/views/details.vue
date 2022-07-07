@@ -7,7 +7,6 @@
     :subList="subList"
     :name="title || sidebar.channel_name"
     ref="sonRef"
-    @childClick2="childClick2"
   />
 
   <section class="detailWrap">

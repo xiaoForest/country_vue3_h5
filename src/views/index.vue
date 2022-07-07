@@ -25,7 +25,7 @@
       <div class="swiperThree">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item
-            v-for="(item, index) in bannerList.slice(0, 1)"
+            v-for="(item, index) in bannerOne"
             :key="index"
             @click="goToBannerList(item)"
           >
@@ -37,7 +37,7 @@
       <div class="swiperTwo">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item
-            v-for="(item, index) in bannerList.slice(1)"
+            v-for="(item, index) in bannerList"
             :key="index"
             @click="goToBannerList(item)"
           >
@@ -93,10 +93,12 @@ const indexList = async () => {
     });
 };
 
+const bannerOne = ref([]);
 const bannerList = ref([]);
 const indexBanner = async () => {
   await getBanner()
     .then((res) => {
+      bannerOne.value = res.data.data.top.data;
       bannerList.value = res.data.data.banner.data;
     })
     .catch((err) => {
