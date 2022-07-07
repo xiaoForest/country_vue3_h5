@@ -2,7 +2,12 @@
 <template>
   <section class="homeWrap">
     <img class="topBanner" :src="getSrc('topBanner.png')" alt="" />
-    <NavBar :showCrumbs="false" ref="sonRef" />
+    <NavBarIndex
+      :subList="subList"
+      ref="sonRef"
+      @childClick="childClick"
+      @childClick2="childClick2"
+    />
 
     <div class="swiperOne">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -29,7 +34,7 @@
             :key="index"
             @click="goToBannerList(item)"
           >
-            <img :src="imgUrl + item.image" alt="" />
+            <img :src="imgUrl + item.h5image" alt="" />
           </van-swipe-item>
         </van-swipe>
       </div>
@@ -55,14 +60,14 @@
 <script setup>
 import { reactive, ref, onMounted, watchEffect, onActivated } from "vue";
 import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
-import NavBar from "@/components/NavBar";
+import NavBarIndex from "@/components/NavBarIndex";
 import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
 import { getIndexList, getBanner, getChannel, imgUrl } from "@/api/api_index";
 import HomeList from "./homeList/homeList.vue";
 import HomeList1 from "./homeList/homeList1.vue";
 import HomeList2 from "./homeList/homeList2.vue";
-
+import { getNewsIndex } from "@/api/api_news.js";
 const router = useRouter();
 const route = useRoute();
 
@@ -133,7 +138,7 @@ onActivated(() => {
 });
 
 onBeforeRouteLeave((to, from) => {
-  console.log(111)
+  console.log(111);
 });
 </script>
 

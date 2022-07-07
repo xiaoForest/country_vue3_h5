@@ -6,41 +6,28 @@
         class="item"
         v-for="(item, index) in navList"
         :key="index"
-        @click="goToPage(item)"
+        @click="goToPageIndex(item, index)"
       >
         {{ item.name }}
       </div>
       <van-icon name="search" @click="onSearchPage" />
     </div>
-    <div class="crumbs" v-if="showCrumbs">
-      <div class="boxes">
-        <van-icon name="location-o" />
-        <span>您所在的位置：</span>
-        <span @click="goHome">首页</span>
-        <van-icon name="arrow" />
-        <span>{{ name }}</span>
+
+    <div class="subWrap" :class="{ show: showSub != true }" ref="subDemo">
+      <div class="item" @click="goToPage(subcategory)">
+        {{ subcategory.name }}
       </div>
-      <div class="boxes" v-if="subList.length != 0 && subList != true">
-        <van-icon
-          name="arrow-down"
-          :class="showSub == true ? 'on' : ''"
-          @click="onSub"
-        />
-      </div>
-    </div>
-    <div class="subWrap" v-show="showSub">
-      <div class="item">{{ name }}</div>
       <div
         class="item"
-        :class="{ on: active == index }"
-        v-for="(i, index) in subList"
+        v-for="(i, index) in subcategory.subcategory"
         :key="index"
-        @click="goToPageSub(i, index)"
+        @click="goToPageSub(i, index, navList)"
       >
         {{ i.name }}
       </div>
     </div>
   </van-sticky>
+  <!-- <div class="emptyNavbar"></div> -->
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -65,10 +52,8 @@ const props = defineProps({
   },
 });
 
-const showSub = ref(false);
-const onSub = () => {
-  showSub.value = !showSub.value;
-};
+const showSub = ref(true);
+
 const navList = ref([]);
 const navChannel = async () => {
   await getChannel()
@@ -87,7 +72,7 @@ const onSearchPage = () => {
   });
 };
 const emit = defineEmits(["childClick"]);
-
+const subcategory = ref([]);
 const goToPage = (i) => {
   showSub.value = false;
   emit("childClick", i);
@@ -99,15 +84,26 @@ const goToPage = (i) => {
     },
   });
 };
+const subPage = ref(0);
+const subDemo = ref(null);
+const goToPageIndex = (i, index) => {
+  if ((index + 1 == subPage.value) == false) {
+    showSub.value = false;
+  } else {
+    showSub.value = !showSub.value;
+  }
+  subPage.value = i.id;
+  subcategory.value = i;
+};
 const active = ref(0);
-const goToPageSub = (i, index) => {
+
+const goToPageSub = (i, index, info) => {
   active.value = index;
-  showSub.value = false;
-  emit("childClick2", i);
+  showSub.value = true;
   router.push({
     path: "/page",
     query: {
-      channel: i.channel,
+      channel: subPage.value,
       subcategory: i.id,
       title: i.name,
       index: index,
@@ -123,7 +119,7 @@ onMounted(() => {
   active.value = route.query.index;
   navChannel();
   window.onscroll = function () {
-    showSub.value = false;
+    showSub.value = true;
   };
 });
 </script>
@@ -168,6 +164,10 @@ onMounted(() => {
   margin: 0 20px 20px;
   border-radius: 10px;
   box-shadow: 0 8px 12px #ebedf0;
+  display: none;
+  &.show {
+    display: block;
+  }
   .item {
     padding: 30px 0;
     margin: 0 20px;
