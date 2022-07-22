@@ -4,7 +4,6 @@
     <h2>广东乡村振兴</h2>
   </div>
   <NavBar
-    :subList="subList"
     :name="title"
     ref="sonRef"
     @childClick="childClick"
