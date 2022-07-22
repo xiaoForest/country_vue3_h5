@@ -1,7 +1,7 @@
 
 <template>
   <div class="pageTitle">
-    <h2>{{ title || sidebar.channel_name }}</h2>
+    <h2>广东乡村振兴</h2>
   </div>
   <NavBar
     :subList="subList"

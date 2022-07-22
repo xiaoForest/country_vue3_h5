@@ -1,7 +1,7 @@
 
 <template>
   <div class="pageTitle">
-    <h2>{{ title || sidebar.channel_name }}</h2>
+    <h2>广东乡村振兴</h2>
   </div>
   <NavBar
     :subList="subList"
@@ -12,7 +12,6 @@
 
   <section class="detailWrap">
     <div class="title" v-html="detail.title"></div>
-    <span class="lien"></span>
     <div class="info">
       来源：{{ detail.source }} |
       {{ dayjs(detail.createtime * 1000).format("YYYY-MM-DD HH:mm:ss") }}
