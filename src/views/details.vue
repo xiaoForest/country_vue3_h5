@@ -12,7 +12,6 @@
   <section class="detailWrap">
     <div class="title" v-html="detail.title"></div>
     <div class="info">
-      {{ detail.source }} |
       {{ dayjs(detail.createtime * 1000).format("YYYY-MM-DD HH:mm:ss") }}
     </div>
     <div class="detailsBox" v-html="detail.content"></div>
