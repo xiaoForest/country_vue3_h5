@@ -13,7 +13,7 @@
   <section class="detailWrap">
     <div class="title" v-html="detail.title"></div>
     <div class="info">
-      来源：{{ detail.source }} |
+      {{ detail.source }} |
       {{ dayjs(detail.createtime * 1000).format("YYYY-MM-DD HH:mm:ss") }}
     </div>
     <div class="detailsBox" v-html="detail.content"></div>
