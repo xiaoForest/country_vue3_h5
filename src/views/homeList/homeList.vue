@@ -78,10 +78,14 @@ const goToPage = (i) => {
 };
 
 const goToPageDetails = (i) => {
+  let urlID = i.id;
+  if (i.link_url != undefined) {
+    urlID = i.link_url.split("=")[1];
+  }
   router.push({
     path: "/details",
     query: {
-      id: i.id,
+      id: urlID,
     },
   });
 };

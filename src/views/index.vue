@@ -87,6 +87,7 @@ const indexList = async () => {
         { ...res.data.data.block["bottom"]["tap"][2] },
         { ...res.data.data.block["bottom"]["tap"][0] },
       ];
+      console.log('BUG',blockList2.value)
     })
     .catch((err) => {
       console.log(err);
