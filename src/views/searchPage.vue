@@ -98,11 +98,17 @@ onMounted(() => {
   }
 });
 const goToPage = (i) => {
-  console.log(i);
+  let urlID = i.id;
+  if (i.link_url != undefined) {
+    urlID = i.link_url.split("=")[1];
+  }
+  if (i.link_url == "") {
+    urlID = i.id;
+  }
   router.push({
     path: "/details",
     query: {
-      id: i.id,
+      id: urlID,
       channel: route.query.channel,
       subcategory: route.query.subcategory,
       title: route.query.title,
