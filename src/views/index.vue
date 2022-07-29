@@ -63,10 +63,11 @@ import HomeList from "./homeList/homeList.vue";
 import HomeList1 from "./homeList/homeList1.vue";
 import HomeList2 from "./homeList/homeList2.vue";
 import { getNewsIndex } from "@/api/api_news.js";
+
+import { Toast } from "vant";
 const router = useRouter();
 const route = useRoute();
 
-import { Toast } from "vant";
 const sonRef = ref();
 const slideshow = ref([]);
 const blockList = ref([]);

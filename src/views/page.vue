@@ -6,6 +6,8 @@
   <NavBar
     :subList="subList"
     :name="title"
+    :channel_name="channelName"
+    :subcategory_name="subcategoryName"
     ref="sonRef"
     @childClick="childClick"
     @childClick2="childClick2"
@@ -44,9 +46,9 @@ import { getNewsBlock, getNewsIndex } from "@/api/api_news.js";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
+import { Toast } from "vant";
 const router = useRouter();
 const route = useRoute();
-import { Toast } from "vant";
 const props = defineProps({
   Currently: {
     type: Number,
@@ -68,6 +70,8 @@ const params = ref({
   channel: route.query.channel,
   subcategory: route.query.subcategory,
 });
+const channelName = ref("");
+const subcategoryName = ref("");
 const subList = ref([]);
 const appointmentQuery = async () => {
   await getNewsIndex(params.value)
@@ -76,7 +80,9 @@ const appointmentQuery = async () => {
       list.value = [...list.value, ...items];
       subList.value = res.data.data.sidebar.subcategory_arr;
       loading.value = false;
-
+      console.log("哈哈：", res.data.data);
+      channelName.value = res.data.data.sidebar.channel_name;
+      subcategoryName.value = res.data.data.sidebar.subcategory_name;
       if (items.length == 0) {
         finished.value = true;
       } else {

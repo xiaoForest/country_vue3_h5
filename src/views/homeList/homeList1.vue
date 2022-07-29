@@ -57,6 +57,7 @@ const goToPage = (i) => {
     router.push({
       path: "/page",
       query: {
+        index: 0,
         channel: i[0].channel,
         title: i[0].channel_name,
         // subcategory: i[0].subcategory,

@@ -15,10 +15,10 @@
     <div class="crumbs" v-if="showCrumbs">
       <div class="boxes">
         <van-icon name="location-o" />
-        <span>您所在的位置：</span>
+        <span>{{ channel_name }}：</span>
         <span @click="goHome">首页</span>
         <van-icon name="arrow" />
-        <span>{{ name }}</span>
+        <span>{{ subcategory_name || channel_name }}</span>
       </div>
       <div class="boxes" v-if="subList.length != 0 && subList != true">
         <van-icon
@@ -32,7 +32,7 @@
       <div class="item">{{ name }}</div>
       <div
         class="item"
-        :class="{ on: active == index }"
+        :class="{ on: subcategory_name == i.name || channel_name == i.name }"
         v-for="(i, index) in subList"
         :key="index"
         @click="goToPageSub(i, index)"
@@ -62,6 +62,14 @@ const props = defineProps({
   subList: {
     type: Object,
     default: true,
+  },
+  channel_name: {
+    type: String,
+    default: "",
+  },
+  subcategory_name: {
+    type: String,
+    default: "",
   },
 });
 

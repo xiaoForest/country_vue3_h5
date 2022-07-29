@@ -6,6 +6,8 @@
   <NavBar
     :subList="subList"
     :name="title || sidebar.channel_name"
+    :channel_name="channelName"
+    :subcategory_name="subcategoryName"
     ref="sonRef"
   />
 
@@ -26,10 +28,11 @@ import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
 import { getNewsDetail } from "@/api/api_news";
 import dayjs from "dayjs";
+
+import { Toast } from "vant";
 const router = useRouter();
 const route = useRoute();
 
-import { Toast } from "vant";
 const sonRef = ref();
 const title = ref(route.query.title);
 watchEffect(() => {
@@ -41,6 +44,8 @@ const goToPage = () => {
 const detail = ref([]);
 const subList = ref([]);
 const sidebar = ref([]);
+const channelName = ref("");
+const subcategoryName = ref("");
 const NewsDetail = async () => {
   Toast.loading({
     message: "加载中...",
@@ -53,6 +58,8 @@ const NewsDetail = async () => {
       detail.value = res.data.data.detail;
       subList.value = res.data.data.sidebar.subcategory_arr;
       sidebar.value = res.data.data.sidebar;
+      channelName.value = res.data.data.sidebar.channel_name;
+      subcategoryName.value = res.data.data.sidebar.subcategory_name;
     })
     .catch((err) => {
       Toast("显示信息出错");
