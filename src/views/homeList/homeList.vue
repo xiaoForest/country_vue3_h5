@@ -37,8 +37,8 @@
 import { reactive, ref, onMounted, watchEffect } from "vue";
 import dayjs from "dayjs";
 import { useRouter } from "vue-router";
-const router = useRouter();
 import { Toast } from "vant";
+const router = useRouter();
 const props = defineProps({
   List: {
     type: Array,
