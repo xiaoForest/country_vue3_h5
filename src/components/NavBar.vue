@@ -18,8 +18,11 @@
         <span @click="goHome">首页</span>
         <van-icon name="arrow" />
         <span>{{ channel_name }}</span>
-        <van-icon v-if="channel_name != ''" name="arrow" />
-        <span>{{ subcategory_name || channel_name }}</span>
+        <van-icon
+          v-if="channel_name != '' && subcategory_name != ''"
+          name="arrow"
+        />
+        <span>{{ subcategory_name }}</span>
       </div>
       <div class="boxes" v-if="subList.length != 0 && subList != true">
         <van-icon
