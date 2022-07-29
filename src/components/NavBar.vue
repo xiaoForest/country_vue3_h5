@@ -15,7 +15,7 @@
     <div class="crumbs" v-if="showCrumbs">
       <div class="boxes">
         <van-icon name="location-o" />
-        <span>{{ channel_name }}：</span>
+        <span>{{ channel_name == "" ? "" : channel_name + "：" }}</span>
         <span @click="goHome">首页</span>
         <van-icon name="arrow" />
         <span>{{ subcategory_name || channel_name }}</span>

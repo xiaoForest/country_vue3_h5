@@ -6,6 +6,8 @@
   <NavBar
     :name="title"
     ref="sonRef"
+    channel_name=""
+    :subcategory_name="title"
     @childClick="childClick"
     @childClick2="childClick2"
   />
@@ -36,9 +38,10 @@ import { getSpecialNewsList } from "@/api/api_specialnews.js";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useRouter, useRoute } from "vue-router";
+import { Toast } from "vant";
 const router = useRouter();
 const route = useRoute();
-import { Toast } from "vant";
+
 const props = defineProps({
   Currently: {
     type: Number,
@@ -56,6 +59,9 @@ const params = ref({
   pagesize: 20,
   special: route.query.id,
 });
+const channelName = ref("");
+const subcategoryName = ref("");
+
 const appointmentQuery = async () => {
   await getSpecialNewsList(params.value)
     .then((res) => {
@@ -63,6 +69,7 @@ const appointmentQuery = async () => {
       list.value = [...list.value, ...items];
       loading.value = false;
       title.value = res.data.data.banner.title;
+ 
       if (items.length == 0) {
         finished.value = true;
       } else {
