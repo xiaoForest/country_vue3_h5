@@ -57,4 +57,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.detailsBox {
+  strong {
+    font-weight: bold;
+  }
+}
 </style>
