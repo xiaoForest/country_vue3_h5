@@ -8,7 +8,7 @@ import {
   getTimeFormat,
   queryToBool
 } from "../utils/util.js";
-export const imgUrl = "https://gdxczx.yuezhengwl.com/"
+export const imgUrl = "https://gdxczx.gd.gov.cn"
 
 
 /**
