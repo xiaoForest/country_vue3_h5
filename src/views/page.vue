@@ -65,7 +65,7 @@ watchEffect(() => {
 });
 const params = ref({
   keyword: "",
-  page: -1,
+  page: 0,
   pagesize: 20,
   channel: route.query.channel,
   subcategory: route.query.subcategory,

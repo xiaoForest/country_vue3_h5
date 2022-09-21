@@ -55,7 +55,7 @@ const props = defineProps({
 const title = ref("");
 const params = ref({
   keyword: "",
-  page: -1,
+  page: 0,
   pagesize: 20,
   special: route.query.id,
 });

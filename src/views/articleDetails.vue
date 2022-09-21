@@ -25,10 +25,11 @@ import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
 import { getArticleDetail } from "@/api/api_index";
 import dayjs from "dayjs";
+import { Toast } from "vant";
 const router = useRouter();
 const route = useRoute();
 
-import { Toast } from "vant";
+
 const sonRef = ref();
 const goToPage = () => {
   Toast("开发中");
