@@ -23,7 +23,7 @@
       <li
         v-for="(m, i) in item.list.slice(0, 5)"
         :key="i"
-        @click="goToPageDetails(m,z)"
+        @click="goToPageDetails(m, z)"
       >
         <span>{{ m.title }}</span>
         <time>
@@ -59,7 +59,7 @@ const goToPage = (i) => {
     router.push({
       path: "/page",
       query: {
-        index:0,
+        index: 0,
         channel: i[0].channel,
         subcategory: i[0].subcategory,
         title: i[0].title,
@@ -78,7 +78,11 @@ const goToPage = (i) => {
   }
 };
 
-const goToPageDetails = (i,z) => {
+const goToPageDetails = (i, z) => {
+  if (i.open_type == 2) {
+    window.location.href = i.link_url;
+    return false;
+  }
   let urlID = i.id;
   if (i.link_url != undefined) {
     urlID = i.link_url.split("=")[1];

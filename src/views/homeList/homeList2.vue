@@ -81,7 +81,10 @@ const goToPage = (i) => {
 };
 
 const goToPageDetails = (i) => {
-  console.log(i);
+  if (i.open_type == 2) {
+    window.location.href = i.link_url;
+    return false;
+  }
   router.push({
     path: "/details",
     query: {

@@ -61,7 +61,12 @@
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import {
+  useRouter,
+  useRoute,
+  onBeforeRouteUpdate,
+  onBeforeRouteLeave,
+} from "vue-router";
 import getSrc from "@/utils/getSrc";
 import { getWebConfig, getWeblink, getChannel } from "@/api/api_index";
 const router = useRouter();
