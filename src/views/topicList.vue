@@ -69,7 +69,7 @@ const appointmentQuery = async () => {
       list.value = [...list.value, ...items];
       loading.value = false;
       title.value = res.data.data.banner.title;
- 
+
       if (items.length == 0) {
         finished.value = true;
       } else {
@@ -84,6 +84,10 @@ const appointmentQuery = async () => {
 onMounted(() => {});
 const goToPage = (i) => {
   let urlID = i.id;
+  if (i.open_type == 2) {
+    window.location.href = i.link_url;
+    return false;
+  }
   if (i.link_url != undefined) {
     urlID = i.link_url.split("=")[1];
   }

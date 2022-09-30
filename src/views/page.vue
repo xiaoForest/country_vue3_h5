@@ -107,6 +107,10 @@ onMounted(() => {
 
 const goToPage = (i) => {
   let urlID = i.id;
+  if (i.open_type == 2) {
+    window.location.href = i.link_url;
+    return false;
+  }
   if (i.link_url != undefined) {
     urlID = i.link_url.split("=")[1];
   }
