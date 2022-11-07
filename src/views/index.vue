@@ -88,7 +88,7 @@ const indexList = async () => {
         { ...res.data.data.block["bottom"]["tap"][2] },
         { ...res.data.data.block["bottom"]["tap"][0] },
       ];
-      console.log('BUG',blockList2.value)
+      console.log("BUG", blockList2.value);
     })
     .catch((err) => {
       console.log(err);
@@ -110,17 +110,28 @@ const indexBanner = async () => {
 
 const goToPageChange = (i) => {
   let id = i.link_url.split("=");
-  router.push({
-    path: "/details",
-    query: {
-      id: id[1],
-      title: i.name,
-    },
-  });
+  // if (i.open_type == 2) {
+  //   window.location.href = i.link_url;
+  //   return false;
+  // }
+  // router.push({
+  //   path: "/details",
+  //   query: {
+  //     id: id[1],
+  //     title: i.name,
+  //   },
+  // });
+  if (i.link_url == "") {
+    return false;
+  }
+  window.location.href = i.link_url;
 };
 const goToBannerList = (i) => {
   let id = i.link_url.split("=");
-  console.log(id[1]);
+  if (i.open_type == 2) {
+    window.location.href = i.link_url;
+    return false;
+  }
   router.push({
     path: "/topicList",
     query: {
