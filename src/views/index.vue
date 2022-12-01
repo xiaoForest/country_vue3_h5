@@ -1,6 +1,6 @@
 
 <template>
-  <section class="homeWrap">
+  <section class="homeWrap" id="homeIndex">
     <img class="topBanner" :src="getSrc('topBanner.png')" alt="" />
     <NavBarIndex ref="sonRef" />
 
@@ -58,7 +58,13 @@ import { useRouter, useRoute, onBeforeRouteLeave } from "vue-router";
 import NavBarIndex from "@/components/NavBarIndex";
 import Footer from "@/components/Footer";
 import getSrc from "@/utils/getSrc";
-import { getIndexList, getBanner, getChannel, imgUrl } from "@/api/api_index";
+import {
+  getIndexList,
+  getBanner,
+  getQrcode,
+  getChannel,
+  imgUrl,
+} from "@/api/api_index";
 import HomeList from "./homeList/homeList.vue";
 import HomeList1 from "./homeList/homeList1.vue";
 import HomeList2 from "./homeList/homeList2.vue";
@@ -97,6 +103,24 @@ const indexList = async () => {
 
 const bannerOne = ref([]);
 const bannerList = ref([]);
+
+const changeQrcode = async () => {
+  await getQrcode()
+    .then((res) => {
+      localStorage.setItem("isGrayscale", res.data.data.is_grayscale);
+      let isGrayscale = localStorage.getItem("isGrayscale");
+      if (isGrayscale == 1) {
+        let mainAPP = document.getElementById("homeIndex");
+        mainAPP.style = "-webkit-filter:grayscale(100%);";
+      }
+      if (isGrayscale == 0) {
+        localStorage.removeItem("isGrayscale");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 const indexBanner = async () => {
   await getBanner()
     .then((res) => {
@@ -140,11 +164,18 @@ const goToBannerList = (i) => {
     },
   });
 };
-onMounted(() => {});
+onMounted(() => {
+  let isGrayscale = localStorage.getItem("isGrayscale");
+  if (isGrayscale == 1) {
+    let mainAPP = document.getElementById("homeIndex");
+    mainAPP.style = "-webkit-filter:grayscale(100%);";
+  }
+});
 onActivated(() => {
   console.log("缓缓");
   indexList();
   indexBanner();
+  changeQrcode();
 });
 
 onBeforeRouteLeave((to, from) => {
